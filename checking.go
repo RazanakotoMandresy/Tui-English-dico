@@ -1,18 +1,42 @@
 package main
 
 import (
+	// "encoding/json"
+	"encoding/json"
 	"fmt"
+	"io"
+	"os"
 	"strings"
 )
 
 // func mijery hoe start avy am'i inona ila izy misy params word na upperWord ihany izy lo eto mijery de a Z
-// Lot of hard coding fix this later🥲😭
+// Lot of hard coding fix this later 🥲😭
+
 func check(word string) {
 	upperWord := strings.ToUpper(word)
 	if strings.HasPrefix(upperWord, "A") {
 		// Mitady anle mot ao anaty data Json specifique
-		fmt.Println(upperWord)
+		file, err := os.Open("./data/a.json")
+		if err != nil {
+			fmt.Println("error during opening file", err)
+			return
+		}
+		defer file.Close()
+		byteValues, err := io.ReadAll(file)
+		if err != nil {
+			fmt.Println("error during reading file", err)
+			return
+		}
+		// fmt.Println(byteValues, "yteva")
+		var data map[string]interface{}
+		err = json.Unmarshal(byteValues, &data)
+		if err != nil {
+			fmt.Println("error unmarshal data ", err)
+			return
+		}
+		fmt.Println(data)
 	}
+
 	if strings.HasPrefix(upperWord, "B") {
 		// Mitady anle mot ao anaty data Json specifique
 		fmt.Println(upperWord)
