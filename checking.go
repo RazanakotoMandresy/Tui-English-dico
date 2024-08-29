@@ -1,12 +1,12 @@
 package main
 
 import (
-	// "encoding/json"
 	"fmt"
 	"os"
 	"strings"
 )
-// TODO Refactoring , adding a ui to make it a TUI 😆
+
+// TODO Refactoring , adding a ui to make it a TUI 😆 , get all synonymes and make a choise to chose and showing all similar word  if found an dico fench or malgache add them
 
 func check(word string) {
 	upperWord := strings.ToUpper(word)
