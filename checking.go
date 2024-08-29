@@ -6,14 +6,11 @@ import (
 	"os"
 	"strings"
 )
-
-// func mijery hoe start avy am'i inona ila izy misy params word na upperWord ihany izy lo eto mijery de a Z
-// Lot of hard coding fix this later 🥲😭
+// TODO Refactoring , adding a ui to make it a TUI 😆
 
 func check(word string) {
 	upperWord := strings.ToUpper(word)
 	if strings.HasPrefix(upperWord, "A") {
-		// Mitady anle mot ao anaty data Json specifique
 		file, err := os.Open("./data/a.json")
 		if err != nil {
 			fmt.Println("error during opening file", err)
