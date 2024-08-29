@@ -2,9 +2,7 @@ package main
 
 import (
 	// "encoding/json"
-	"encoding/json"
 	"fmt"
-	"io"
 	"os"
 	"strings"
 )
@@ -22,125 +20,232 @@ func check(word string) {
 			return
 		}
 		defer file.Close()
-		byteValues, err := io.ReadAll(file)
-		if err != nil {
-			fmt.Println("error during reading file", err)
-			return
-		}
-		// map data type map[string]interface{}
-		var data map[string]interface{}
-		err = json.Unmarshal(byteValues, &data)
-		if err != nil {
-			fmt.Println("error unmarshal data ", err)
-			return
-		}
-		element, ok := data[upperWord]
-		fmt.Printf("element %v \n , ok %v \n" , element, ok)
+		searchWord(file, upperWord)
 	}
-
 	if strings.HasPrefix(upperWord, "B") {
-		// Mitady anle mot ao anaty data Json specifique
-		fmt.Println(upperWord)
+		file, err := os.Open("./data/b.json")
+		if err != nil {
+			fmt.Println("error during opening file", err)
+			return
+		}
+		defer file.Close()
+		searchWord(file, upperWord)
 	}
 	if strings.HasPrefix(upperWord, "C") {
-		// Mitady anle mot ao anaty data Json specifique
-		fmt.Println(upperWord)
+		file, err := os.Open("./data/c.json")
+		if err != nil {
+			fmt.Println("error during opening file", err)
+			return
+		}
+		defer file.Close()
+		searchWord(file, upperWord)
 	}
 	if strings.HasPrefix(upperWord, "D") {
-		// Mitady anle mot ao anaty data Json specifique
-		fmt.Println(upperWord)
+		file, err := os.Open("./data/d.json")
+		if err != nil {
+			fmt.Println("error during opening file", err)
+			return
+		}
+		defer file.Close()
+		searchWord(file, upperWord)
 	}
 	if strings.HasPrefix(upperWord, "E") {
-		// Mitady anle mot ao anaty data Json specifique
-		fmt.Println(upperWord)
+		file, err := os.Open("./data/e.json")
+		if err != nil {
+			fmt.Println("error during opening file", err)
+			return
+		}
+		defer file.Close()
+		searchWord(file, upperWord)
 	}
 	if strings.HasPrefix(upperWord, "F") {
-		// Mitady anle mot ao anaty data Json specifique
-		fmt.Println(upperWord)
-	}
-	if strings.HasPrefix(upperWord, "I") {
-		// Mitady anle mot ao anaty data Json specifique
-		fmt.Println(upperWord)
+		file, err := os.Open("./data/f.json")
+		if err != nil {
+			fmt.Println("error during opening file", err)
+			return
+		}
+		defer file.Close()
+		searchWord(file, upperWord)
 	}
 	if strings.HasPrefix(upperWord, "G") {
-		// Mitady anle mot ao anaty data Json specifique
-		fmt.Println(upperWord)
+		file, err := os.Open("./data/g.json")
+		if err != nil {
+			fmt.Println("error during opening file", err)
+			return
+		}
+		defer file.Close()
+		searchWord(file, upperWord)
 	}
 	if strings.HasPrefix(upperWord, "H") {
-		// Mitady anle mot ao anaty data Json specifique
-		fmt.Println(upperWord)
+		file, err := os.Open("./data/h.json")
+		if err != nil {
+			fmt.Println("error during opening file", err)
+			return
+		}
+		defer file.Close()
+		searchWord(file, upperWord)
 	}
 	if strings.HasPrefix(upperWord, "I") {
-		// Mitady anle mot ao anaty data Json specifique
-		fmt.Println(upperWord)
+		file, err := os.Open("./data/i.json")
+		if err != nil {
+			fmt.Println("error during opening file", err)
+			return
+		}
+		defer file.Close()
+		searchWord(file, upperWord)
 	}
 	if strings.HasPrefix(upperWord, "J") {
-		// Mitady anle mot ao anaty data Json specifique
-		fmt.Println(upperWord)
+		file, err := os.Open("./data/j.json")
+		if err != nil {
+			fmt.Println("error during opening file", err)
+			return
+		}
+		defer file.Close()
+		searchWord(file, upperWord)
 	}
 	if strings.HasPrefix(upperWord, "K") {
-		// Mitady anle mot ao anaty data Json specifique
-		fmt.Println(upperWord)
+		file, err := os.Open("./data/k.json")
+		if err != nil {
+			fmt.Println("error during opening file", err)
+			return
+		}
+		defer file.Close()
+		searchWord(file, upperWord)
 	}
 	if strings.HasPrefix(upperWord, "L") {
-		// Mitady anle mot ao anaty data Json specifique
-		fmt.Println(upperWord)
+		file, err := os.Open("./data/l.json")
+		if err != nil {
+			fmt.Println("error during opening file", err)
+			return
+		}
+		defer file.Close()
+		searchWord(file, upperWord)
 	}
 	if strings.HasPrefix(upperWord, "M") {
-		// Mitady anle mot ao anaty data Json specifique
-		fmt.Println(upperWord)
+		file, err := os.Open("./data/m.json")
+		if err != nil {
+			fmt.Println("error during opening file", err)
+			return
+		}
+		defer file.Close()
+		searchWord(file, upperWord)
 	}
 	if strings.HasPrefix(upperWord, "N") {
-		// Mitady anle mot ao anaty data Json specifique
-		fmt.Println(upperWord)
+		file, err := os.Open("./data/n.json")
+		if err != nil {
+			fmt.Println("error during opening file", err)
+			return
+		}
+		defer file.Close()
+		searchWord(file, upperWord)
 	}
 	if strings.HasPrefix(upperWord, "O") {
-		// Mitady anle mot ao anaty data Json specifique
-		fmt.Println(upperWord)
+		file, err := os.Open("./data/o.json")
+		if err != nil {
+			fmt.Println("error during opening file", err)
+			return
+		}
+		defer file.Close()
+		searchWord(file, upperWord)
 	}
 	if strings.HasPrefix(upperWord, "P") {
-		// Mitady anle mot ao anaty data Json specifique
-		fmt.Println(upperWord)
+		file, err := os.Open("./data/p.json")
+		if err != nil {
+			fmt.Println("error during opening file", err)
+			return
+		}
+		defer file.Close()
+		searchWord(file, upperWord)
 	}
 	if strings.HasPrefix(upperWord, "Q") {
-		// Mitady anle mot ao anaty data Json specifique
-		fmt.Println(upperWord)
+		file, err := os.Open("./data/q.json")
+		if err != nil {
+			fmt.Println("error during opening file", err)
+			return
+		}
+		defer file.Close()
+		searchWord(file, upperWord)
 	}
 	if strings.HasPrefix(upperWord, "R") {
-		// Mitady anle mot ao anaty data Json specifique
-		fmt.Println(upperWord)
+		file, err := os.Open("./data/r.json")
+		if err != nil {
+			fmt.Println("error during opening file", err)
+			return
+		}
+		defer file.Close()
+		searchWord(file, upperWord)
 	}
 	if strings.HasPrefix(upperWord, "S") {
-		// Mitady anle mot ao anaty data Json specifique
-		fmt.Println(upperWord)
+		file, err := os.Open("./data/s.json")
+		if err != nil {
+			fmt.Println("error during opening file", err)
+			return
+		}
+		defer file.Close()
+		searchWord(file, upperWord)
 	}
 	if strings.HasPrefix(upperWord, "T") {
-		// Mitady anle mot ao anaty data Json specifique
-		fmt.Println(upperWord)
+		file, err := os.Open("./data/t.json")
+		if err != nil {
+			fmt.Println("error during opening file", err)
+			return
+		}
+		defer file.Close()
+		searchWord(file, upperWord)
 	}
 	if strings.HasPrefix(upperWord, "U") {
-		// Mitady anle mot ao anaty data Json specifique
-		fmt.Println(upperWord)
+		file, err := os.Open("./data/a.json")
+		if err != nil {
+			fmt.Println("error during opening file", err)
+			return
+		}
+		defer file.Close()
+		searchWord(file, upperWord)
 	}
 	if strings.HasPrefix(upperWord, "V") {
-		// Mitady anle mot ao anaty data Json specifique
-		fmt.Println(upperWord)
+		file, err := os.Open("./data/v.json")
+		if err != nil {
+			fmt.Println("error during opening file", err)
+			return
+		}
+		defer file.Close()
+		searchWord(file, upperWord)
 	}
 	if strings.HasPrefix(upperWord, "W") {
-		// Mitady anle mot ao anaty data Json specifique
-		fmt.Println(upperWord)
+		file, err := os.Open("./data/w.json")
+		if err != nil {
+			fmt.Println("error during opening file", err)
+			return
+		}
+		defer file.Close()
+		searchWord(file, upperWord)
 	}
 	if strings.HasPrefix(upperWord, "X") {
-		// Mitady anle mot ao anaty data Json specifique
-		fmt.Println(upperWord)
+		file, err := os.Open("./data/x.json")
+		if err != nil {
+			fmt.Println("error during opening file", err)
+			return
+		}
+		defer file.Close()
+		searchWord(file, upperWord)
 	}
 	if strings.HasPrefix(upperWord, "Y") {
-		// Mitady anle mot ao anaty data Json specifique
-		fmt.Println(upperWord)
+		file, err := os.Open("./data/y.json")
+		if err != nil {
+			fmt.Println("error during opening file", err)
+			return
+		}
+		defer file.Close()
+		searchWord(file, upperWord)
 
 	}
 	if strings.HasPrefix(upperWord, "Z") {
-		// Mitady anle mot ao anaty data Json specifique
-		fmt.Println(upperWord)
+		file, err := os.Open("./data/z.json")
+		if err != nil {
+			fmt.Println("error during opening file", err)
+			return
+		}
+		defer file.Close()
+		searchWord(file, upperWord)
 	}
 }
