@@ -27,14 +27,15 @@ func check(word string) {
 			fmt.Println("error during reading file", err)
 			return
 		}
-		// fmt.Println(byteValues, "yteva")
+		// map data type map[string]interface{}
 		var data map[string]interface{}
 		err = json.Unmarshal(byteValues, &data)
 		if err != nil {
 			fmt.Println("error unmarshal data ", err)
 			return
 		}
-		fmt.Println(data)
+		element, ok := data[upperWord]
+		fmt.Printf("element %v \n , ok %v \n" , element, ok)
 	}
 
 	if strings.HasPrefix(upperWord, "B") {
