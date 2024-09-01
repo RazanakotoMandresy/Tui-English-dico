@@ -7,6 +7,10 @@ import (
 	"os"
 )
 
+type WordStruct struct {
+	Meaning map[string]string
+}
+
 func searchWord(file *os.File, upperWord string) {
 	// valeur bytes du file open
 	byteValues, err := io.ReadAll(file)
@@ -28,5 +32,8 @@ func searchWord(file *os.File, upperWord string) {
 		return
 	}
 	fmt.Printf("the description of %v is %v \n", upperWord, element)
-
+	fmt.Println("enter another word you want to describe")
+	fmt.Println("..................................................")
+	fmt.Printf("%t \n", element)
+	fmt.Println("..................................................")
 }

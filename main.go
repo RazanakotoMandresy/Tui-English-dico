@@ -11,9 +11,11 @@ func main() {
 	var word string
 	fmt.Println("welcome on TUI-English-dico")
 	fmt.Println("enter the words you want to describe")
-	_, err := fmt.Scan(&word)
-	if err != nil {
-		fmt.Println("error when you enter the word to describe")
+	for {
+		_, err := fmt.Scan(&word)
+		if err != nil {
+			fmt.Println("error when you enter the word to describe")
+		}
+		check(word)
 	}
-	check(word)
 }
