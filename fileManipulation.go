@@ -7,8 +7,10 @@ import (
 	"os"
 )
 
-type WordStruct struct {
-	Meaning map[string]string
+type Word struct {
+	Antonyms []string    `json:"ANTONYMS"`
+	Synonyms []string    `json:"SYNONYMS"`
+	Meanings interface{} `json:"MEANINGS"`
 }
 
 func searchWord(file *os.File, upperWord string) {
@@ -19,7 +21,7 @@ func searchWord(file *os.File, upperWord string) {
 		return
 	}
 	// map[string]interface{} type object json dans go
-	var data map[string]interface{}
+	var data map[string]Word
 	err = json.Unmarshal(byteValues, &data)
 	if err != nil {
 		fmt.Println("error unmarshal data ", err)
@@ -31,9 +33,12 @@ func searchWord(file *os.File, upperWord string) {
 		fmt.Println("the word you want to describe not found")
 		return
 	}
-	fmt.Printf("the description of %v is %v \n", upperWord, element)
+	fmt.Printf("the description of %v : \n Synonyms : %v \n  antonyms:%v \n Meanings : %v \n",
+		upperWord,
+		element.Synonyms,
+		element.Antonyms,
+		element.Meanings,
+	)
+	fmt.Println("..................................................")
 	fmt.Println("enter another word you want to describe")
-	fmt.Println("..................................................")
-	fmt.Printf("%t \n", element)
-	fmt.Println("..................................................")
 }
