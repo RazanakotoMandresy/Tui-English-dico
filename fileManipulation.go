@@ -6,7 +6,7 @@ import (
 	"io"
 	"os"
 )
-
+// TODO adding a json stream or something
 func searchWord(file *os.File, upperWord string) {
 	// valeur bytes du file open
 	byteValues, err := io.ReadAll(file)
