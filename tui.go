@@ -80,15 +80,14 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			if err != nil {
 				error := fmt.Sprintf("error : %v ", lipgloss.NewStyle().Foreground(lipgloss.Color("#ff0000")).Render(err.Error()))
 				m.viewport.SetContent(error)
-				m.err = err
 				m.textarea.Reset()
 				return m, nil
 			}
 			// fmt.Println("Meanings : %v \n", res.Meanings)
-			m.Synonyms = append(m.Synonyms, res.Synonyms...)
-			m.Antonyms = append(m.Antonyms, res.Antonyms...)
-			Synonyms := fmt.Sprintf("%v : %v \n", m.senderStyle.Render("Synonyms"), strings.Join(m.Synonyms, " "))
-			Antonyms := fmt.Sprintf("%v : %v \n", m.senderStyle.Render("Antonyms"), strings.Join(m.Synonyms, " "))
+			// m.Synonyms = append(m.Synonyms, res.Synonyms...)
+			// m.Antonyms = append(m.Antonyms, res.Antonyms...)
+			Synonyms := fmt.Sprintf("%v : %v \n", m.senderStyle.Render("Synonyms"), strings.Join(res.Synonyms, " "))
+			Antonyms := fmt.Sprintf("%v : %v \n", m.senderStyle.Render("Antonyms"), strings.Join(res.Antonyms, " "))
 			Meanings := fmt.Sprintf("%v : %v \n", m.senderStyle.Render("Meanings"), res.Meanings)
 			m.viewport.SetContent(Meanings + Synonyms + Antonyms)
 			m.textarea.Reset()
