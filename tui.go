@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strings"
 	// "strings"
 
 	"github.com/charmbracelet/bubbles/textarea"
@@ -16,8 +17,8 @@ type (
 )
 type model struct {
 	viewport    viewport.Model
-	Meanings    string
-	Antonyms    string
+	Meanings    interface{}
+	Antonyms    []string
 	Synonyms    []string
 	textarea    textarea.Model
 	senderStyle lipgloss.Style
@@ -28,19 +29,15 @@ func initialModel() model {
 	ta := textarea.New()
 	ta.Placeholder = "entrer here the word you want to describe..."
 	ta.Focus()
-
 	ta.Prompt = "┃ "
-	ta.CharLimit = 280
-
-	ta.SetWidth(30)
-	ta.SetHeight(3)
+	ta.CharLimit = 28
+	ta.SetWidth(100)
+	ta.SetHeight(2)
 	ta.FocusedStyle.CursorLine = lipgloss.NewStyle()
 
 	ta.ShowLineNumbers = false
-
-	vp := viewport.New(30, 5)
-	vp.SetContent(`welcome on TUI-English-dico
-enter the words you want to describe`)
+	vp := viewport.New(150, 10)
+	vp.SetContent(`welcome on TUI-English-dico`)
 
 	ta.KeyMap.InsertNewline.SetEnabled(false)
 
@@ -49,8 +46,8 @@ enter the words you want to describe`)
 		viewport:    vp,
 		senderStyle: lipgloss.NewStyle().Foreground(lipgloss.Color("5")),
 		err:         nil,
-		Meanings:    "",
-		Antonyms:    "",
+		Meanings:    []string{},
+		Antonyms:    []string{},
 		Synonyms:    []string{},
 	}
 }
@@ -79,10 +76,21 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			fmt.Println(m.textarea.Value())
 			return m, tea.Quit
 		case tea.KeyEnter:
-			res := check(m.textarea.Value())
-			fmt.Println("ress", res)
+			res, err := check(m.textarea.Value())
+			if err != nil {
+				error := fmt.Sprintf("error : %v ", lipgloss.NewStyle().Foreground(lipgloss.Color("#ff0000")).Render(err.Error()))
+				m.viewport.SetContent(error)
+				m.err = err
+				m.textarea.Reset()
+				return m, nil
+			}
+			// fmt.Println("Meanings : %v \n", res.Meanings)
 			m.Synonyms = append(m.Synonyms, res.Synonyms...)
-			// m.viewport.SetContent(strings.Join(m.Synonyms, "") + m.textarea.Value())
+			m.Antonyms = append(m.Antonyms, res.Antonyms...)
+			Synonyms := fmt.Sprintf("%v : %v \n", m.senderStyle.Render("Synonyms"), strings.Join(m.Synonyms, " "))
+			Antonyms := fmt.Sprintf("%v : %v \n", m.senderStyle.Render("Antonyms"), strings.Join(m.Synonyms, " "))
+			Meanings := fmt.Sprintf("%v : %v \n", m.senderStyle.Render("Meanings"), res.Meanings)
+			m.viewport.SetContent(Meanings + Synonyms + Antonyms)
 			m.textarea.Reset()
 			m.viewport.GotoBottom()
 		}
