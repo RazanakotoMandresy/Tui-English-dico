@@ -13,32 +13,29 @@ type Word struct {
 	Meanings interface{} `json:"MEANINGS"`
 }
 
-func searchWord(file *os.File, upperWord string) {
+func searchWord(file *os.File, upperWord string) *Word {
 	// valeur bytes du file open
 	byteValues, err := io.ReadAll(file)
 	if err != nil {
 		fmt.Println("error during reading file", err)
-		return
+		return nil
 	}
 	// map[string]interface{} type object json dans go
 	var data map[string]Word
 	err = json.Unmarshal(byteValues, &data)
 	if err != nil {
 		fmt.Println("error unmarshal data ", err)
-		return
+		return nil
 	}
 	// check dans le data le mots correspendant a upperword
 	element, ok := data[upperWord]
 	if !ok {
-		fmt.Println("the word you want to describe not found")
-		return
+		fmt.Println("the word you want to describe not found ")
+		return nil
 	}
-	fmt.Printf("the description of %v : \n Synonyms : %v \n  antonyms:%v \n Meanings : %v \n",
-		upperWord,
-		element.Synonyms,
-		element.Antonyms,
-		element.Meanings,
-	)
-	fmt.Println("..................................................")
-	fmt.Println("enter another word you want to describe")
+	return &Word{
+		Synonyms: element.Synonyms,
+		Antonyms: element.Antonyms,
+		Meanings: element.Meanings,
+	}
 }
