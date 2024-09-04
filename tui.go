@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"strings"
-	// "strings"
 
 	"github.com/charmbracelet/bubbles/textarea"
 	"github.com/charmbracelet/bubbles/viewport"
@@ -11,15 +10,14 @@ import (
 	"github.com/charmbracelet/lipgloss"
 )
 
+// TODO Responsive ui
 // codes ui manipulation buubletea
 type (
 	errMsg error
 )
 type model struct {
-	viewport    viewport.Model
-	Meanings    interface{}
-	Antonyms    []string
-	Synonyms    []string
+	viewport viewport.Model
+
 	textarea    textarea.Model
 	senderStyle lipgloss.Style
 	err         error
@@ -46,9 +44,6 @@ func initialModel() model {
 		viewport:    vp,
 		senderStyle: lipgloss.NewStyle().Foreground(lipgloss.Color("5")),
 		err:         nil,
-		Meanings:    []string{},
-		Antonyms:    []string{},
-		Synonyms:    []string{},
 	}
 }
 func (m model) Init() tea.Cmd {
@@ -83,13 +78,8 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				m.textarea.Reset()
 				return m, nil
 			}
-			// fmt.Println("Meanings : %v \n", res.Meanings)
-			// m.Synonyms = append(m.Synonyms, res.Synonyms...)
-			// m.Antonyms = append(m.Antonyms, res.Antonyms...)
-			Synonyms := fmt.Sprintf("%v : %v \n", m.senderStyle.Render("Synonyms"), strings.Join(res.Synonyms, " "))
-			Antonyms := fmt.Sprintf("%v : %v \n", m.senderStyle.Render("Antonyms"), strings.Join(res.Antonyms, " "))
-			Meanings := fmt.Sprintf("%v : %v \n", m.senderStyle.Render("Meanings"), res.Meanings)
-			m.viewport.SetContent(Meanings + Synonyms + Antonyms)
+			content := fmt.Sprintf("%v : %v \n %v : %v \n%v : %v \n", m.senderStyle.Render("Synonyms"), strings.Join(res.Synonyms, ","), m.senderStyle.Render("Antonyms"), strings.Join(res.Antonyms, ","), m.senderStyle.Render("Meanings"), res.Meanings)
+			m.viewport.SetContent(content)
 			m.textarea.Reset()
 			m.viewport.GotoBottom()
 		}
