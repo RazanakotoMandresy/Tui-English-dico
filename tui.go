@@ -16,8 +16,7 @@ type (
 	errMsg error
 )
 type model struct {
-	viewport viewport.Model
-
+	viewport    viewport.Model
 	textarea    textarea.Model
 	senderStyle lipgloss.Style
 	err         error
@@ -27,8 +26,8 @@ func initialModel() model {
 	ta := textarea.New()
 	ta.Placeholder = "entrer here the word you want to describe..."
 	ta.Focus()
-	ta.Prompt = "┃ "
-	ta.CharLimit = 28
+	ta.Prompt = "┃  "
+	ta.CharLimit = 26
 	ta.SetWidth(100)
 	ta.SetHeight(2)
 	ta.FocusedStyle.CursorLine = lipgloss.NewStyle()

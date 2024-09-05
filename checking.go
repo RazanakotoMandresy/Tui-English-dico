@@ -8,10 +8,13 @@ import (
 
 func check(word string) (*Word, error) {
 	strSlice := strings.Split(word, "")
-	if len(strSlice) == 0 {
-	return nil, fmt.Errorf("invalid input %v", word)
-	}
 	upperWord := strings.ToUpper(word)
+	if len(strSlice) == 0 {
+		return nil, fmt.Errorf("invalid  invalid you enter nothing %v", word)
+	}
+	if strings.Contains(word, " ") {
+		return nil, fmt.Errorf("word to describe cannot contains any empty space  in %v", word)
+	}
 	fileToOpen := fmt.Sprintf("./data/%v.json", strSlice[0])
 	file, err := os.Open(fileToOpen)
 	if err != nil {
