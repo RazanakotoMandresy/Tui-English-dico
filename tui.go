@@ -31,7 +31,6 @@ func initialModel() model {
 	ta.SetWidth(100)
 	ta.SetHeight(2)
 	ta.FocusedStyle.CursorLine = lipgloss.NewStyle()
-
 	ta.ShowLineNumbers = false
 	vp := viewport.New(150, 10)
 	vp.SetContent(`welcome on TUI-English-dico`)
