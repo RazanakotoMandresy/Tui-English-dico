@@ -1,4 +1,4 @@
-package main
+package logics
 
 import (
 	"fmt"
@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func check(word string) (*Word, error) {
+func Check(word string) (*Word, error) {
 	strSlice := strings.Split(word, "")
 	upperWord := strings.ToUpper(word)
 	if len(strSlice) == 0 {
