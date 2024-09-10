@@ -1,9 +1,10 @@
-package main
+package getWord
 
 import (
 	"fmt"
 	"strings"
 
+	"github.com/RazanakotoMandresy/Tui-English-dico/pkg/logics"
 	"github.com/charmbracelet/bubbles/textarea"
 	"github.com/charmbracelet/bubbles/viewport"
 	tea "github.com/charmbracelet/bubbletea"
@@ -22,7 +23,7 @@ type model struct {
 	err         error
 }
 
-func initialModel() model {
+func InialGet() model {
 	ta := textarea.New()
 	ta.Placeholder = "entrer here the word you want to describe..."
 	ta.Focus()
@@ -69,7 +70,7 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			fmt.Println(m.textarea.Value())
 			return m, tea.Quit
 		case tea.KeyEnter:
-			res, err := check(m.textarea.Value())
+			res, err := logics.Check(m.textarea.Value())
 			if err != nil {
 				error := fmt.Sprintf("error : %v ", lipgloss.NewStyle().Foreground(lipgloss.Color("#ff0000")).Render(err.Error()))
 				m.viewport.SetContent(error)
@@ -87,6 +88,5 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		m.err = msg
 		return m, nil
 	}
-
 	return m, tea.Batch(tiCmd, vpCmd)
 }
