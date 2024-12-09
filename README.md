@@ -2,24 +2,24 @@
 
 this app is an tui english dictionnary
 
-### to run the app
+## to run the app
 
-#### clone the repo first
+### clone the repo first
 
 ```bash
-$ git clone https://github.com/RazanakotoMandresy/Tui-English-dico
+git clone https://github.com/RazanakotoMandresy/Tui-English-dico
 ```
 
-#### enter on the directory
+### enter on the directory
 
 ```bash
-$ cd Tui-English-dico
+cd Tui-English-dico
 ```
 
 ### run the dico with a make
 
 ``` bash
-$ make run
+ make run
 ```
 
 ### run with go code
